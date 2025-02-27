@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Preguntas-Eticas/static/css/main.2399ddf9.css",
-    "main.js": "/Preguntas-Eticas/static/js/main.159539ad.js",
+    "main.css": "/Preguntas-Eticas/static/css/main.5b2adb7c.css",
+    "main.js": "/Preguntas-Eticas/static/js/main.2aa2565c.js",
     "index.html": "/Preguntas-Eticas/index.html",
-    "main.2399ddf9.css.map": "/Preguntas-Eticas/static/css/main.2399ddf9.css.map",
-    "main.159539ad.js.map": "/Preguntas-Eticas/static/js/main.159539ad.js.map"
+    "main.5b2adb7c.css.map": "/Preguntas-Eticas/static/css/main.5b2adb7c.css.map",
+    "main.2aa2565c.js.map": "/Preguntas-Eticas/static/js/main.2aa2565c.js.map"
   },
   "entrypoints": [
-    "static/css/main.2399ddf9.css",
-    "static/js/main.159539ad.js"
+    "static/css/main.5b2adb7c.css",
+    "static/js/main.2aa2565c.js"
   ]
 }

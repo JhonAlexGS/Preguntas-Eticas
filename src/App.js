@@ -77,6 +77,7 @@ function App() {
       { name: "militar", icon: <GiCrossedPistols />, porcent: 30 },
       { name: "economia", icon: <MdOutlineAttachMoney />, porcent: 30 },
     ]);
+    setScore(0);
   };
 
   useEffect(() => {
@@ -84,6 +85,7 @@ function App() {
     const itemRandom = getRandom(dilemma);
     setText(itemRandom.text);
     setDictionary(itemRandom.changeStats);
+    setScore(0);
 
   }, [])
 
@@ -98,7 +100,7 @@ function App() {
           <div className="popup-overlay">
             <div className="popup-content">
               <h2>Perdiste 🥲</h2>
-              <p>Puntuación</p>
+              <p>Puntuación {score}</p>
               <button onClick={hidePopup}>Cerrar</button>
             </div>
           </div>

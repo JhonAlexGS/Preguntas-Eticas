@@ -30,7 +30,7 @@ export default function BoxLoading({ icon, porcent }) {
                 <div
                     style={{
                         position: "absolute",
-                        top: "20%",
+                        top: "30%",
                         left: "50%",
                         transform: "translate(-50%, -50%)", // Centrar el texto
                         color: "#fff",
@@ -39,7 +39,7 @@ export default function BoxLoading({ icon, porcent }) {
                     }}
                 >
                     {icon}
-                    {porcent}%
+                    {/* {porcent}% */}
                 </div>
             </div>
 

@@ -18,26 +18,28 @@ function App() {
   const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
   const [items, setItems] = useState([
-    { name:"ambiente", icon: <PiPlantFill />, porcent: 50 },
-    { name:"social", icon: <HiUserGroup />, porcent: 50 },
-    { name:"militar", icon: <GiCrossedPistols />, porcent: 50 },
-    { name:"economia", icon: <MdOutlineAttachMoney />, porcent: 50 },
+    { name: "ambiente", icon: <PiPlantFill />, porcent: 30 },
+    { name: "social", icon: <HiUserGroup />, porcent: 30 },
+    { name: "militar", icon: <GiCrossedPistols />, porcent: 30 },
+    { name: "economia", icon: <MdOutlineAttachMoney />, porcent: 30 },
   ]);
 
   const [text, setText] = useState("");
   const [dictionary, setDictionary] = useState({});
+  const [score, setScore] = useState(0);
+  const [flag, setFlag] = useState(true);
 
   const updateMultiplePorcent = (updates) => {
     setItems(prevItems => {
       const updatedItems = prevItems.map(item => {
         const update = updates.find(u => u.name === item.name);
         if (update) {
-          if ((update.porcent+item.porcent)>100) {
+          if ((update.porcent + item.porcent) > 100) {
             return { ...item, porcent: 100 };
-          } else if ((update.porcent+item.porcent)<0) {
+          } else if ((update.porcent + item.porcent) < 0) {
             return { ...item, porcent: 0 };
-          } else{
-            return { ...item, porcent: update.porcent+item.porcent};
+          } else {
+            return { ...item, porcent: update.porcent + item.porcent };
           }
         }
         return item;
@@ -45,14 +47,36 @@ function App() {
       return updatedItems;
     });
   };
-  
+
   const handleClick = (param) => {
 
-    updateMultiplePorcent(dictionary[param]);
-    const itemRandom = getRandom(dilemma);
-    setText(itemRandom.text);
-    setDictionary(itemRandom.changeStats);
+    if (flag) {
 
+      updateMultiplePorcent(dictionary[param]);
+      const itemRandom = getRandom(dilemma);
+      setText(itemRandom.text);
+      setDictionary(itemRandom.changeStats);
+
+      const hasZeroPorcent = items.some(item => item.porcent === 0);
+
+      if (hasZeroPorcent) {
+        setFlag(false);
+      } else {
+        setScore(score + 200);
+      }
+
+    }
+
+  };
+
+  const hidePopup = () => {
+    setFlag(true);
+    setItems([
+      { name: "ambiente", icon: <PiPlantFill />, porcent: 30 },
+      { name: "social", icon: <HiUserGroup />, porcent: 30 },
+      { name: "militar", icon: <GiCrossedPistols />, porcent: 30 },
+      { name: "economia", icon: <MdOutlineAttachMoney />, porcent: 30 },
+    ]);
   };
 
   useEffect(() => {
@@ -65,6 +89,21 @@ function App() {
 
   return (
     <div className="App">
+
+      <div>
+        {/* Botón para mostrar el popup */}
+      
+        {/* Popup */}
+        {!flag && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              <h2>Perdiste 🥲</h2>
+              <p>Puntuación</p>
+              <button onClick={hidePopup}>Cerrar</button>
+            </div>
+          </div>
+        )}
+      </div>
 
       <div className="App-header">
 
@@ -118,12 +157,12 @@ function App() {
               <div onClick={() => handleClick("si")} style={{ cursor: 'pointer' }}>
                 <BsCheckCircleFill size={50} color="#00FF00" />
               </div>
-              <div onClick={()=>{handleClick("no")} } style={{ cursor: 'pointer' }}>
+              <div onClick={() => { handleClick("no") }} style={{ cursor: 'pointer' }}>
                 <BsXCircleFill size={50} color="#FF0000" />
               </div>
 
             </div>
-            <h5>Score: 123'102.313</h5>
+            <h5>Score: {score}</h5>
           </div>
 
           <div>

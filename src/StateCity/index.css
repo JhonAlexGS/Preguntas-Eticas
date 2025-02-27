@@ -1,0 +1,16 @@
+#contentStatusCity {
+    display: flex; /* Activa Flexbox */
+    gap: 10px; /* Espacio entre los elementos (opcional) */
+    padding: 10px; /* Espacio interno (opcional) */
+    /* border: 1px solid #ccc;  */
+    justify-content: center;
+    gap:25px;
+}
+
+.columnState {
+    display: flex; /* Activa Flexbox */
+    flex-direction: column; /* Apila los elementos en una columna */
+    gap: 10px; /* Espacio entre los elementos (opcional) */
+    padding: 10px; /* Espacio interno (opcional) */
+    border: 1px solid #ccc;
+}

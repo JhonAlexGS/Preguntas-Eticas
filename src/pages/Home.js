@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import { imagenes } from '../constant/constant.js'
-
+import React, { useState, useEffect } from "react";
 import "../App.css"
 
 import { useNavigate } from "react-router-dom";
@@ -53,6 +52,13 @@ const Home = () => {
   const [selected, setSelected] = useState("");
   const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
 
+  
+  useEffect(() => {
+    let diccionarioGuardado = JSON.parse(localStorage.getItem("saveData2"));
+    setNombre(diccionarioGuardado.name);
+    setImagenSeleccionada(imagenes[diccionarioGuardado.img]);
+  }, []);
+
 
   const handleNombreChange = (event) => {
     setNombre(event.target.value);
@@ -64,6 +70,19 @@ const Home = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!nombre.trim()) {
+      alert('Por favor, ingresa tu nombre.');
+      return;
+    }
+    if (!imagenSeleccionada) {
+      alert('Por favor, selecciona una imagen.');
+      return;
+    }
+    if (!selected) {
+      alert('Por favor, selecciona una Round.');
+      return;
+    }
+
     navigate(`/play/${imagenSeleccionada.id}/${nombre}/${selected}`);
   };
 
@@ -82,7 +101,8 @@ const Home = () => {
 
         <div style={{ justifyContent: 'center', alignItems: 'center', color: "#ffffff", marginBottom: "0px" }}>
           <hr style={{ width: '30vh', margin: 0, justifyContent: 'center' }}></hr>
-          <h1 style={styles.bebasNeueRegular}><strong>¿Que harías tu?</strong></h1>
+          <div ></div>
+          <h1 style={{ display: "flex", justifyContent: 'center', alignItems: 'center',}} ><strong>¿Cuál Eliges?</strong></h1>
           <hr style={{ width: '30vh', margin: 0 }}></hr>
         </div>
 

@@ -46,17 +46,24 @@ const styles = {
 
 const Home = () => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(0);
 
-  const [nombre, setNombre] = useState('');
+  const [nombre, setNombre] = useState("");
   const [selected, setSelected] = useState("");
-  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+  const [imagenSeleccionada, setImagenSeleccionada] = useState({});
 
   
   useEffect(() => {
-    let diccionarioGuardado = JSON.parse(localStorage.getItem("saveData2"));
-    setNombre(diccionarioGuardado.name);
-    setImagenSeleccionada(imagenes[diccionarioGuardado.img]);
+    try{
+
+      let diccionarioGuardado = JSON.parse(localStorage.getItem("saveData2"));
+      if(diccionarioGuardado){
+        setNombre(diccionarioGuardado.name);
+        setImagenSeleccionada(imagenes[diccionarioGuardado.img]);
+      }
+    }catch(error){
+      console.log(error)
+    }
   }, []);
 
 

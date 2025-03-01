@@ -5,6 +5,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { BsXCircleFill } from "react-icons/bs";
 import { PiPlantFill } from "react-icons/pi";
 import { HiUserGroup } from "react-icons/hi2";
+import { FaInfoCircle } from "react-icons/fa";
 import { GiCrossedPistols } from "react-icons/gi";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { dilemma } from './Questions/Questions'
@@ -30,11 +31,34 @@ function App() {
   const [dictionary, setDictionary] = useState({});
   const [score, setScore] = useState(0);
   const [flag, setFlag] = useState(true);
-  const [user,] = useState({
+  const [flagInfo, setFlagInfo] = useState(false);
+
+  let dataDictionary = {
     img: img,
     name: name,
-    round: round
-  });
+    round: round,
+    maxScore1: 0,
+    maxScore2: 0,
+    maxScore3: 0, 
+  }
+
+  // const [itemsScore, setItemsScore] = useState({})
+  
+  const diccionarioGuardado = JSON.parse(localStorage.getItem("saveData2"));
+  if (diccionarioGuardado){
+    dataDictionary = {
+      img: diccionarioGuardado.img,
+      name: diccionarioGuardado.name,
+      round: round,
+      maxScore1: diccionarioGuardado.maxScore1,
+      maxScore2: diccionarioGuardado.maxScore2,
+      maxScore3: diccionarioGuardado.maxScore3, 
+    }
+  }
+  
+  localStorage.setItem("saveData2", JSON.stringify(dataDictionary));
+
+  const [user,setUser] = useState(dataDictionary);
 
   const updateMultiplePorcent = (updates) => {
     setItems(prevItems => {
@@ -57,21 +81,46 @@ function App() {
 
   const handleClick = (param) => {
 
-    if (flag) {
+    if (param === "info") {
+      setFlagInfo(true);
 
-      updateMultiplePorcent(dictionary[param]);
-      const itemRandom = getRandom(dilemma);
-      setText(itemRandom.text);
-      setDictionary(itemRandom.changeStats);
 
-      const hasZeroPorcent = items.some(item => item.porcent === 0);
+    }else{
 
-      if (hasZeroPorcent) {
-        setFlag(false);
-      } else {
-        setScore(score + 200);
-      }
+        if (flag) {
+          updateMultiplePorcent(dictionary[param]);
+          const itemRandom = getRandom(dilemma);
+          setText(itemRandom.text);
+          setDictionary(itemRandom.changeStats);
+          
+          let diccionarioGuardado = JSON.parse(localStorage.getItem("saveData2"));
+          let selectRound = parseInt(diccionarioGuardado.round)
 
+          if (selectRound === 1) {
+            if (parseInt(diccionarioGuardado.maxScore1)<score){
+              diccionarioGuardado.maxScore1 = score;
+            }
+          } else if (selectRound === 2) {
+            if (parseInt(diccionarioGuardado.maxScore2)<score){
+              diccionarioGuardado.maxScore2 = score;
+            }
+          } else if (selectRound === 3) {
+            if (parseInt(diccionarioGuardado.maxScore2)<score){
+              diccionarioGuardado.maxScore3 = score;
+            }
+          }
+
+          setUser(diccionarioGuardado)
+          localStorage.setItem("saveData2", JSON.stringify(diccionarioGuardado));
+    
+          const hasZeroPorcent = items.some(item => item.porcent === 0);
+    
+          if (hasZeroPorcent) {
+            setFlag(false);
+          } else {
+            setScore(score + 200);
+          }
+        }
     }
 
   };
@@ -85,6 +134,10 @@ function App() {
       { name: "economia", icon: <MdOutlineAttachMoney />, porcent: 30 },
     ]);
     setScore(0);
+  };
+
+  const hidePopupInfo = () => {
+    setFlagInfo(false);
   };
 
   const imagen = imagenes[user.img];
@@ -127,6 +180,19 @@ function App() {
               <h2>Perdiste 🥲</h2>
               <p>Puntuación {score}</p>
               <button onClick={hidePopup}>Cerrar</button>
+            </div>
+          </div>
+        )}
+        {flagInfo && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              <h2>Resultados</h2>
+              <hr></hr>
+              <p>{`Max Score Round 1: ${user.maxScore1}`}</p>
+              <p>{`Max Score Round 2:  ${user.maxScore2}`}</p>
+              <p>{`Max Score Round 3: ${user.maxScore3}`}</p>
+              <h3><strong>Puntuación Total: </strong>{user.maxScore1 + user.maxScore2 + user.maxScore3}</h3>
+              <button onClick={hidePopupInfo}>Cerrar</button>
             </div>
           </div>
         )}
@@ -194,6 +260,9 @@ function App() {
 
               <div onClick={() => handleClick("si")} style={{ cursor: 'pointer' }}>
                 <BsCheckCircleFill size={50} color="#00FF00" />
+              </div>
+              <div onClick={() => { handleClick("info") }} style={{ cursor: 'pointer' }}>
+                <FaInfoCircle size={50} color="#FFFF00" />
               </div>
               <div onClick={() => { handleClick("no") }} style={{ cursor: 'pointer' }}>
                 <BsXCircleFill size={50} color="#FF0000" />

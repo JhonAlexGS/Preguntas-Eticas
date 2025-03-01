@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact ";
 import Play from "./pages/Play";
-import NotFound from "./pages/NotFound";
+// import NotFound from "./pages/NotFound";
 import './App.css';
 
 const App = () => {

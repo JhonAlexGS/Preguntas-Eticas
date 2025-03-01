@@ -3,6 +3,7 @@
   "name": "platzi-intro-react-base",
   "version": "0.1.0",
   "dependencies": {
+    "googleapis": "^146.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.5.0",

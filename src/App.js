@@ -35,7 +35,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/play/:img/:name/:round" element={<Play />} />
-          <Route path="*" element={<NotFound />} /> {/* Para rutas no encontradas */}
+          <Route path="*" element={<Home />} /> {/* Para rutas no encontradas */}
         </Routes>
       </div>
     </Router>

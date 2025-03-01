@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Preguntas-Eticas/static/css/main.c5790a82.css",
-    "main.js": "/Preguntas-Eticas/static/js/main.669ee412.js",
+    "main.js": "/Preguntas-Eticas/static/js/main.92d761dc.js",
     "static/media/gato.webp": "/Preguntas-Eticas/static/media/gato.92bb48d9001e478b1ce2.webp",
     "static/media/raton.png": "/Preguntas-Eticas/static/media/raton.8d1c786e2f393c227d86.png",
     "static/media/ardilla.jpg": "/Preguntas-Eticas/static/media/ardilla.099a1bedc53bc06edea7.jpg",
@@ -9,10 +9,10 @@
     "static/media/mapache.jpg": "/Preguntas-Eticas/static/media/mapache.1008ec3d8c4ad63a13ad.jpg",
     "index.html": "/Preguntas-Eticas/index.html",
     "main.c5790a82.css.map": "/Preguntas-Eticas/static/css/main.c5790a82.css.map",
-    "main.669ee412.js.map": "/Preguntas-Eticas/static/js/main.669ee412.js.map"
+    "main.92d761dc.js.map": "/Preguntas-Eticas/static/js/main.92d761dc.js.map"
   },
   "entrypoints": [
     "static/css/main.c5790a82.css",
-    "static/js/main.669ee412.js"
+    "static/js/main.92d761dc.js"
   ]
 }

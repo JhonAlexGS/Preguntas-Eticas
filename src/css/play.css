@@ -1,0 +1,29 @@
+.contenedor-x1 {
+    display: grid;
+    place-items: center; /* Centra horizontal y verticalmente */
+    margin: 1%;
+    padding: 5%;
+    background: linear-gradient(to right, #07080f, #0a1d72);
+    border-radius: 15px;
+  }
+
+.contenedorUser {
+    display: grid;
+  grid-template-columns: 1fr; /* Una sola columna */
+  justify-items: start; /* Alinea los elementos a la izquierda */
+  gap: 0px; /* Espacio entre los elementos */
+}
+
+.paddingNone {
+    padding: 0%;
+    margin: 0%;
+}
+
+#ContentAll {
+  
+    padding: '190px'; 
+    margin-left: 30px;
+    margin-right: 30px;
+    /* background-color: #76757e; */
+
+}

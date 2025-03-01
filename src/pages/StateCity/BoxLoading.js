@@ -6,8 +6,21 @@ export default function BoxLoading({ icon, porcent }) {
 
             <div
                 style={{
+                    // position: "absolute",
+                    // top: "30%",
+                    left: "30%",
+                    // transform: "translate(-50%, -50%)", // Centrar el texto
+                    color: "#fff",
+                    fontSize: "25px",
+                    fontWeight: "bold",
+                }}
+            >
+                {icon}
+            </div>
+            <div
+                style={{
                     width: "40px", // Ancho de la barra
-                    height: "100px", // Altura total de la barra
+                    height: "80px", // Altura total de la barra
                     border: "2px solid #fff", // Borde de la barra
                     // borderRadius: "8px", // Bordes redondeados
                     position: "relative", // Posición relativa para posicionar el indicador
@@ -27,20 +40,6 @@ export default function BoxLoading({ icon, porcent }) {
                 ></div>
 
                 {/* Etiqueta de porcentaje */}
-                <div
-                    style={{
-                        position: "absolute",
-                        top: "30%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)", // Centrar el texto
-                        color: "#fff",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                    }}
-                >
-                    {icon}
-                    {/* {porcent}% */}
-                </div>
             </div>
 
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BoxLoading from "./BoxLoading";
 
-import "./index.css"
+import "../../index.css"
 
 export default function StatusCity({items, setItems}) {
 
